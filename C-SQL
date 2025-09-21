@@ -1,1 +1,95 @@
+using System;
+using System.Data;
+using System.Data.SqlClient;
+using System.Windows.Forms;
 
+namespace kutuphanezeynep
+{
+    public partial class Form1 : Form
+    {
+        string connectionString = "Server=.;Database=zeynepkütüphanesi;Trusted_Connection=True;";
+        public Form1()
+        {
+            InitializeComponent();
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            string query = "SELECT * FROM kitaplar";
+
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                try
+                {
+                    SqlDataAdapter adapter = new SqlDataAdapter(query, connection);
+                    DataTable dt = new DataTable();
+                    adapter.Fill(dt);
+                    dataGridView1.DataSource = dt;
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Hata: " + ex.Message);
+                }
+            }
+                query = "SELECT * FROM Yazarlar";
+
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                try
+                {
+                    SqlDataAdapter adapter = new SqlDataAdapter(query, connection);
+                    DataTable dt = new DataTable();
+                    adapter.Fill(dt);
+                    dataGridView2.DataSource = dt;
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Hata: " + ex.Message);
+                }
+            }
+
+            query = "SELECT * FROM uyeler";
+
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                try
+                {
+                    SqlDataAdapter adapter = new SqlDataAdapter(query, connection);
+                    DataTable dt = new DataTable();
+                    adapter.Fill(dt);
+                    dataGridView3.DataSource = dt;
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Hata: " + ex.Message);
+                }
+            }
+            query = "SELECT * FROM Adresler";
+
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                try
+                {
+                    SqlDataAdapter adapter = new SqlDataAdapter(query, connection);
+                    DataTable dt = new DataTable();
+                    adapter.Fill(dt);
+                    dataGridView4.DataSource = dt;
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Hata: " + ex.Message);
+                }
+            }
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
+    }
+}
